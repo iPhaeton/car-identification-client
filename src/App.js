@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import {PreviewGenerator} from "./PreviewGenerator/index";
+import {requestGenerator} from "./requestGenerator/index";
+import {getPreview} from "./utils/api";
 
 class App extends Component {
   previewGenerator = null;
@@ -15,7 +16,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.previewGenerator = new PreviewGenerator(5000, this.update);
+    this.previewGenerator = requestGenerator({
+      request: getPreview,
+      timeout: 5000,
+      onResponse: this.update,
+    });
     this.previewGenerator.start();
   }
 
