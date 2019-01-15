@@ -32,7 +32,10 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-content">
-          <img src={`data:image/jpeg;charset=utf-8;base64,${this.state.image_base64}`}/>
+          <img
+            src={`data:image/jpeg;charset=utf-8;base64,${this.state.image_base64}`}
+            alt={this.state.classes[0]}
+          />
         </div>
       </div>
     );

@@ -11,7 +11,7 @@ export async function getRequest(url, queryParams = null, options = {}) {
   try {
     const response = await fetch(`${url}${query}`, {method: 'GET', ...options});
     const body = await response.json();
-    return body
+    return body;
   } catch(err) {
     console.error(err);
   }

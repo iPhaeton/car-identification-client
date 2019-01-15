@@ -1,17 +1,15 @@
 import {delay} from "../utils/common";
 
-export function requestGenerator({request, timeout = 5000, onResponse = () => {}}) {
-  if (!request) {
-    throw new Error('[requestGenerator] Request function is required.')
-  }
+const proto = {
+  async generate(state, {request, timeout = 5000, onResponse = () => {}}) {
+    if (!request) {
+      throw new Error('[requestGenerator] Request function is required.')
+    }
 
-  let isGenerating = false;
-
-  async function generate() {
-    while (isGenerating) {
+    while (state.isGenerating) {
       try {
         const response = await request();
-        if (isGenerating) {
+        if (state.isGenerating) {
           onResponse(response);
         }
       } catch(err) {
@@ -20,15 +18,23 @@ export function requestGenerator({request, timeout = 5000, onResponse = () => {}
       await delay(timeout);
     }
   }
+};
 
-  return {
+export function requestGenerator(options) {
+  const state = {isGenerating: false};
+
+  const generator = {
     start() {
-      isGenerating = true;
-      generate();
+      state.isGenerating = true;
+      this.generate(state, options);
     },
 
     stop() {
-      isGenerating = false;
+      state.isGenerating = false;
     }
-  }
+  };
+
+  Object.setPrototypeOf(generator, proto);
+
+  return generator;
 }
