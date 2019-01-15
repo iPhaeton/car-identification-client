@@ -6,9 +6,18 @@ export const buildQueryString = obj => {
   return `?${query}`;
 }
 
+export async function get(url, queryParams = null, options = {}) {
+  const query = queryParams ? buildQueryString(queryParams) : '';
+  try {
+    const response = await fetch(`${url}${query}`, {method: 'GET', ...options});
+    const body = await response.json();
+    return body
+  } catch(err) {
+    console.error(err);
+  }
+}
+
 export async function getPreview(filename = null) {
-  const query = filename ? buildQueryString({filename}) : '';
-  const response = await fetch(`${process.env.REACT_APP_API}/preview${query}`, {method: 'GET'});
-  const body = await response.json();
-  return body;
+  const preview = await get(`${process.env.REACT_APP_API}/preview`, filename ? {filename} : null);
+  return preview;
 }

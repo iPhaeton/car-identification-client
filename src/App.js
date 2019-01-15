@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
 import './App.css';
-import {getPreview} from "./utils/api";
+import {PreviewGenerator} from "./PreviewGenerator/index";
 
 class App extends Component {
-  timer = null;
+  previewGenerator = null;
   state = {
     image_base64: null,
     probs: [],
     classes: [],
   }
 
-  getPreview = async () =>{
-    const body = await getPreview();
-    this.setState({...body});
+  update = (newState) =>{
+    this.setState({...newState});
   }
 
   componentDidMount() {
-    this.getPreview();
-    this.timer = setInterval(this.getPreview, 5000);
+    this.previewGenerator = new PreviewGenerator(5000, this.update);
+    this.previewGenerator.start();
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer)
+    this.previewGenerator.stop();
   }
 
   render() {
