@@ -3,6 +3,7 @@ import './App.css';
 import {requestGenerator} from "./requestGenerator/index";
 import {getPreview} from "./utils/api";
 import Preview from './components/Preview';
+import Info from './components/Info';
 
 class App extends Component {
   previewGenerator = null;
@@ -38,6 +39,7 @@ class App extends Component {
             image={`data:image/jpeg;charset=utf-8;base64,${this.state.image_base64}`}
             alt={this.state.classes[0]}
           />
+          <Info classes={this.state.classes} probs={this.state.probs} />
         </div>
       </div>
     );
