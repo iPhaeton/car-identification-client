@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
 import './App.css';
+import {BASE64_PREFIX, PREDICTION_MODE, SLIDE_SHOW_MODE} from "./constants";
 import {requestGenerator} from "./requestGenerator/index";
 import {getPreview, getThumbnails} from "./utils/api";
 import Preview from './components/Preview';
 import Info from './components/Info';
 import Thumbnails from "./components/Thumbnails";
-import {BASE64_PREFIX} from "./constants";
+import ControlPanel from './components/ControlPanel';
 
 class App extends Component {
   previewGenerator = null;
   state = {
+    mode: SLIDE_SHOW_MODE,
     preview: {
       image_base64: null,
       probs: [],
@@ -18,30 +20,26 @@ class App extends Component {
     thumbnails: [],
   }
 
-  updatePreview = (preview) => {
-    this.setState({preview});
-  }
-
-  updateThumbnails = (thumbnails) => {
-    this.setState({thumbnails});
+  update = (newState) => {
+    this.setState({...this.state, ...newState});
   }
 
   handleThumbnailClick = async ({filename}) => {
     this.previewGenerator.stop();
     const preview = await getPreview(filename);
-    this.updatePreview(preview);
+    this.update({mode: PREDICTION_MODE, preview});
   }
 
   componentDidMount = async () => {
     this.previewGenerator = requestGenerator({
       request: getPreview,
       timeout: 5000,
-      onResponse: this.updatePreview,
+      onResponse: preview => this.update({preview}),
     });
     this.previewGenerator.start();
 
     const thumbnails = await getThumbnails(20);
-    this.updateThumbnails(thumbnails);
+    this.update({thumbnails});
   }
 
   componentWillUnmount() {
@@ -49,7 +47,7 @@ class App extends Component {
   }
 
   render() {
-    const {preview, thumbnails} = this.state;
+    const {mode, preview, thumbnails} = this.state;
 
     return (
       <div className="App">
@@ -61,7 +59,10 @@ class App extends Component {
             />
             <Thumbnails thumbnails={thumbnails} onThumbClick={this.handleThumbnailClick}/>
           </div>
-          <Info classes={preview.classes} probs={preview.probs}/>
+          <div className="App-info">
+            <Info classes={preview.classes} probs={preview.probs}/>
+            <ControlPanel mode={mode} />
+          </div>
         </div>
       </div>
     );

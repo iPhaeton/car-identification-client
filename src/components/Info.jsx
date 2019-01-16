@@ -7,7 +7,7 @@ const Info = props => {
 
   return (
     <div style={{
-      width: '30%',
+      width: '100%',
       height: 500,
 
     }}>

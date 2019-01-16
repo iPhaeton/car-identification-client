@@ -1,0 +1,23 @@
+.ControlPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 120px;
+}
+
+.ControlButton {
+    width: 200px;
+    height: 50px;
+    border: none;
+    border: none;
+    font-size: 15px;
+}
+
+.ControlButton:hover {
+    cursor: pointer;
+}
+
+.ControlButton:focus {
+    outline: 0;
+}

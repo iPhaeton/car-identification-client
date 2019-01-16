@@ -7,7 +7,7 @@ const Thumbnail = props => {
 
   return (
     <button className="Thumbnail" onClick={() => onClick(thumbnail)}>
-      <img src={`${BASE64_PREFIX}${thumbnail.image_base64}`} />
+      <img src={`${BASE64_PREFIX}${thumbnail.image_base64}`} alt="thumbnail" />
     </button>
   )
 }

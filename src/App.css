@@ -21,6 +21,11 @@
   height: 650px;
 }
 
+.App-info {
+  width: 30%;
+  height: 650px;
+}
+
 .App-link {
   color: #61dafb;
 }
