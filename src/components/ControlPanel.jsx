@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './ControlPanel.css';
+import '../css/ControlPanel.css';
 import {PREDICTION_MODE} from "../constants";
 
 const ControlPanel = props => {

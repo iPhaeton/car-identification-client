@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {BASE64_PREFIX} from "../constants";
-import './Thumbnail.css';
+import '../css/Thumbnail.css';
 
 const Thumbnail = props => {
   const {thumbnail, onClick} = props;
