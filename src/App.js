@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {requestGenerator} from "./requestGenerator/index";
 import {getPreview} from "./utils/api";
+import Preview from './components/Preview';
 
 class App extends Component {
   previewGenerator = null;
@@ -29,11 +30,12 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="App">
         <div className="App-content">
-          <img
-            src={`data:image/jpeg;charset=utf-8;base64,${this.state.image_base64}`}
+          <Preview
+            image={`data:image/jpeg;charset=utf-8;base64,${this.state.image_base64}`}
             alt={this.state.classes[0]}
           />
         </div>
