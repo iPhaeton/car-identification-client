@@ -22,7 +22,6 @@ class App extends Component {
       classes: [],
     },
     thumbnails: [],
-    recognizer: null,
   }
 
   update = (newState) => {
@@ -43,7 +42,7 @@ class App extends Component {
   handleRecognitionRequest = () => {
     this.previewGenerator.stop();
     this.update({mode: PREDICTION_MODE});
-    this.state.recognizer.requestRecognition();
+    this.recognizer.requestRecognition();
   }
 
   handleRecognitionComplete = (preview) => {
@@ -63,10 +62,10 @@ class App extends Component {
     });
     this.previewGenerator.start();
 
-    this.update({recognizer: recognizer(this.input, {
+    this.recognizer = recognizer({
       onRecognitionComplete: this.handleRecognitionComplete,
       onRecognitionCancel: this.handleRecognitionCancel,
-    })})
+    })
 
     const thumbnails = await getThumbnails(20);
     this.update({thumbnails});
@@ -94,12 +93,6 @@ class App extends Component {
             <ControlPanel mode={mode} onRecognitionRequest={this.handleRecognitionRequest} onBackToSlideShowClick={this.handleBackToSlideShowClick} />
           </div>
         </div>
-        <input
-          ref={ref => this.input = ref}
-          className="FileInput"
-          type="file"
-          onChange={this.state.recognizer && this.state.recognizer.onInputChange}
-        />
       </div>
     );
   }

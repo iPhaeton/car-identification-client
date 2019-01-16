@@ -2,8 +2,6 @@ import {recognize} from "../utils/api";
 import {fileToBase64} from "../utils/common";
 
 const proto = {
-  onInputChange: () => {},
-
   async recognize(handlers) {
     const {onRecognitionComplete, onRecognitionCancel} = handlers;
 
@@ -23,9 +21,12 @@ const proto = {
   },
 }
 
-export function recognizer(input, handlers) {
-  let onInputChange = null;
-  const waitForInputChange = new Promise(resolve => onInputChange = (event) => resolve(event.target.files[0]))
+export function recognizer(handlers) {
+  const input = document.createElement("input");
+  input.setAttribute('type', 'file');
+  document.body.appendChild(input);
+
+  const waitForInputChange = new Promise(resolve => input.onchange = (event) => resolve(event.target.files[0]));
 
   const recognizer = {
     input,
@@ -33,7 +34,6 @@ export function recognizer(input, handlers) {
       this.recognize(handlers);
     },
     waitForInputChange,
-    onInputChange,
   }
 
   Object.setPrototypeOf(recognizer, proto);
