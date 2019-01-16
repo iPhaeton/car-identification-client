@@ -1,0 +1,1 @@
+export const BASE64_PREFIX = 'data:image/jpeg;charset=utf-8;base64,';

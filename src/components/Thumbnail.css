@@ -1,0 +1,14 @@
+.Thumbnail {
+    border: none;
+    padding: 0;
+    backgroundColor: transparent;
+}
+
+.Thumbnail:hover {
+    cursor: pointer;
+}
+
+.Thumbnail:focus {
+    outline: 0;
+    border: 1px solid red;
+}

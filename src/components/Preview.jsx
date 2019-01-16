@@ -5,7 +5,7 @@ const Preview = props => {
 
   return (
     <div style={{
-      width: '70%',
+      width: '100%',
       height: 500,
       display: 'flex',
       justifyContent: 'center',

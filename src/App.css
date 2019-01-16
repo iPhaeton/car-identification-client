@@ -16,6 +16,11 @@
   color: white;
 }
 
+.App-preview {
+  width: 70%;
+  height: 650px;
+}
+
 .App-link {
   color: #61dafb;
 }
