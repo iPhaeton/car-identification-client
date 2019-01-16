@@ -8,20 +8,23 @@ import Info from './components/Info';
 class App extends Component {
   previewGenerator = null;
   state = {
-    image_base64: null,
-    probs: [],
-    classes: [],
+    preview: {
+      image_base64: null,
+      probs: [],
+      classes: [],
+    },
+    thumbnails: [],
   }
 
-  update = (newState) =>{
-    this.setState({...newState});
+  updatePreview = (preview) =>{
+    this.setState({preview});
   }
 
   componentDidMount() {
     this.previewGenerator = requestGenerator({
       request: getPreview,
       timeout: 5000,
-      onResponse: this.update,
+      onResponse: this.updatePreview,
     });
     this.previewGenerator.start();
   }
@@ -31,15 +34,16 @@ class App extends Component {
   }
 
   render() {
+    const {preview} = this.state;
     console.log(this.state)
     return (
       <div className="App">
         <div className="App-content">
           <Preview
-            image={`data:image/jpeg;charset=utf-8;base64,${this.state.image_base64}`}
-            alt={this.state.classes[0]}
+            image={`data:image/jpeg;charset=utf-8;base64,${preview.image_base64}`}
+            alt={preview.classes[0]}
           />
-          <Info classes={this.state.classes} probs={this.state.probs} />
+          <Info classes={preview.classes} probs={preview.probs} />
         </div>
       </div>
     );
