@@ -12,6 +12,7 @@ const Preview = props => {
       alignItems: 'center',
     }}>
       <img
+        style={{maxHeight: 500, maxWidth: '100%'}}
         src={image}
         alt={alt}
       />
