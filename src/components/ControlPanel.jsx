@@ -3,12 +3,12 @@ import '../css/ControlPanel.css';
 import {PREDICTION_MODE} from "../constants";
 
 const ControlPanel = props => {
-  const {mode} = props;
+  const {mode, onBackToSlideShowClick} = props;
 
   return (
     <div className="ControlPanel">
       <button className="ControlButton">Recognize my image</button>
-      {mode === PREDICTION_MODE ? <button className="ControlButton">Back to slide show</button> : null}
+      {mode === PREDICTION_MODE ? <button className="ControlButton" onClick={onBackToSlideShowClick}>Back to slide show</button> : null}
     </div>
   )
 }

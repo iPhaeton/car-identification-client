@@ -30,6 +30,11 @@ class App extends Component {
     this.update({mode: PREDICTION_MODE, preview});
   }
 
+  handleBackToSlideShowClick = () => {
+    this.previewGenerator.start();
+    this.update({mode: SLIDE_SHOW_MODE})
+  }
+
   componentDidMount = async () => {
     this.previewGenerator = requestGenerator({
       request: getPreview,
@@ -61,7 +66,7 @@ class App extends Component {
           </div>
           <div className="App-info">
             <Info classes={preview.classes} probs={preview.probs}/>
-            <ControlPanel mode={mode} />
+            <ControlPanel mode={mode} onBackToSlideShowClick={this.handleBackToSlideShowClick} />
           </div>
         </div>
       </div>
