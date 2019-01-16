@@ -7,7 +7,6 @@ const Preview = props => {
     <div style={{
       width: '70%',
       height: 500,
-      backgroundColor: 'blue',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
