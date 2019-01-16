@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {requestGenerator} from "./requestGenerator/index";
-import {getPreview} from "./utils/api";
+import {getPreview, getThumbnails} from "./utils/api";
 import Preview from './components/Preview';
 import Info from './components/Info';
 
@@ -20,13 +20,16 @@ class App extends Component {
     this.setState({preview});
   }
 
-  componentDidMount() {
+  componentDidMount = async() => {
     this.previewGenerator = requestGenerator({
       request: getPreview,
       timeout: 5000,
       onResponse: this.updatePreview,
     });
     this.previewGenerator.start();
+
+    const thumbnails = await getThumbnails(20);
+    console.log(thumbnails)
   }
 
   componentWillUnmount() {
@@ -35,7 +38,7 @@ class App extends Component {
 
   render() {
     const {preview} = this.state;
-    console.log(this.state)
+
     return (
       <div className="App">
         <div className="App-content">

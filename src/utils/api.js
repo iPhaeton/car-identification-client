@@ -21,3 +21,8 @@ export async function getPreview(filename = null) {
   const preview = await getRequest(`${process.env.REACT_APP_API}/preview`, filename ? {filename} : null);
   return preview;
 }
+
+export async function getThumbnails(quantity = 20) {
+  const thumbnails = await getRequest(`${process.env.REACT_APP_API}/thumbnails`, {quantity});
+  return thumbnails;
+}
