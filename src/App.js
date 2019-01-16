@@ -65,7 +65,7 @@ class App extends Component {
     this.recognizer = recognizer({
       onRecognitionComplete: this.handleRecognitionComplete,
       onRecognitionCancel: this.handleRecognitionCancel,
-    })
+    });
 
     const thumbnails = await getThumbnails(20);
     this.update({thumbnails});
