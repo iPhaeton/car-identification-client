@@ -13,7 +13,7 @@ export function map(...args) {
 
   for (let i = 0; i < arrays[0].length; i++) {
     const funcArgs = arrays.map(a => a[i]);
-    results.push(func(...funcArgs));
+    results.push(func(...funcArgs, i));
   }
 
   return results;

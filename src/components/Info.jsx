@@ -11,7 +11,7 @@ const Info = props => {
       height: 500,
 
     }}>
-      {map((c, p) => <ClassInfo name={c} prob={p}/>, classes, probs)}
+      {map((c, p, i) => <ClassInfo name={c} prob={p} key={i}/>, classes, probs)}
     </div>
   )
 }
