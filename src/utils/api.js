@@ -1,5 +1,3 @@
-import {delay} from "./common";
-
 export const buildQueryString = obj => {
   const query = Object.entries(obj)
     .map(pair => pair.map(encodeURIComponent).join('='))
@@ -13,7 +11,7 @@ export async function sendRequest(url, options) {
     const response = await fetch(url, options);
     const res = await response.json();
     return res;
-  } catch(err) {
+  } catch (err) {
     console.error(err);
   }
 }
@@ -23,7 +21,7 @@ export async function getRequest(url, queryParams = null, options = {}) {
   return await sendRequest(`${url}${query}`, {method: 'GET', ...options});
 }
 
-export async function postRequest(url, body={}, options = {}) {
+export async function postRequest(url, body = {}, options = {}) {
   return await sendRequest(url, {method: 'POST', body, ...options});
 }
 
@@ -38,16 +36,9 @@ export async function getThumbnails(quantity = 20) {
 }
 
 export async function recognize(file) {
-  if (process.env.NODE_ENV === 'production') {
-    const body = new FormData();
-    body.append('image', file);
-    const res = await postRequest(process.env.REACT_APP_API, body);
-    return res;
-  } else {
-    await delay(1000);
-    return {
-      classes: ['1', '2', '3', '4', '5'],
-      probs: [1,0,0,0,0],
-    }
-  }
+  const body = new FormData();
+  body.append('image', file);
+  const res = await postRequest(process.env.REACT_APP_API, body);
+  console.log(res)
+  return res;
 }
