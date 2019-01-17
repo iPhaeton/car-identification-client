@@ -7,7 +7,7 @@ import Preview from './components/Preview';
 import Info from './components/Info';
 import Thumbnails from "./components/Thumbnails";
 import ControlPanel from './components/ControlPanel';
-import {recognizer} from "./recognizeer/index";
+import {recognizer} from "./recognizer/index";
 import {getImageString} from "./utils/common";
 
 class App extends Component {
