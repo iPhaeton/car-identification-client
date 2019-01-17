@@ -5,7 +5,7 @@ const proto = {
     if (!request) {
       throw new Error('[requestGenerator] Request function is required.')
     }
-
+    
     while (state.isGenerating) {
       try {
         const response = await request();

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {ClipLoader} from 'react-spinners';
 
 const Preview = props => {
   const {image, alt, isLoading} = props;
@@ -12,7 +13,10 @@ const Preview = props => {
       alignItems: 'center',
     }}>
       {isLoading ?
-        null :
+        <ClipLoader
+          color="#00ffff"
+          size={50}
+        /> :
         <img
           style={{maxHeight: 500, maxWidth: '100%'}}
           src={image}
