@@ -39,20 +39,14 @@ class App extends Component {
     this.update({mode: SLIDE_SHOW_MODE})
   }
 
-  handleRecognitionRequest = () => {
+  handleRecognitionRequest = async () => {
     this.previewGenerator.stop();
     this.update({mode: PREDICTION_MODE});
-    this.recognizer.requestRecognition();
-  }
-
-  handleRecognitionComplete = (preview) => {
-    this.update({preview});
-  }
-
-  handleRecognitionCancel = () => {
-    this.previewGenerator.start();
-    this.update({mode: SLIDE_SHOW_MODE})
-  }
+    const preview = await this.recognizer.requestRecognition();
+    if (preview) {
+      this.update({preview});
+    }
+  };
 
   componentDidMount = async () => {
     this.previewGenerator = requestGenerator({
@@ -62,10 +56,7 @@ class App extends Component {
     });
     this.previewGenerator.start();
 
-    this.recognizer = recognizer({
-      onRecognitionComplete: this.handleRecognitionComplete,
-      onRecognitionCancel: this.handleRecognitionCancel,
-    });
+    this.recognizer = recognizer();
 
     const thumbnails = await getThumbnails(20);
     this.update({thumbnails});
