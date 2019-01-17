@@ -44,10 +44,12 @@ class App extends Component {
     this.previewGenerator.stop();
     this.update({mode: PREDICTION_MODE});
     const file = await this.recognizer.request()
+    this.update({isLoading: true})
     const preview = await this.recognizer.recognize(file);
     if (preview) {
       this.update({preview});
     }
+    this.update({isLoading: false})
   };
 
   componentDidMount = async () => {
