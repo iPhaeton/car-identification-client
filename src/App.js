@@ -43,7 +43,8 @@ class App extends Component {
   handleRecognitionRequest = async () => {
     this.previewGenerator.stop();
     this.update({mode: PREDICTION_MODE});
-    const preview = await this.recognizer.requestRecognition();
+    const file = await this.recognizer.request()
+    const preview = await this.recognizer.recognize(file);
     if (preview) {
       this.update({preview});
     }
