@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 const Preview = props => {
-  const {image, alt} = props;
+  const {image, alt, isLoading} = props;
 
   return (
     <div style={{
@@ -11,11 +11,14 @@ const Preview = props => {
       justifyContent: 'center',
       alignItems: 'center',
     }}>
-      <img
-        style={{maxHeight: 500, maxWidth: '100%'}}
-        src={image}
-        alt={alt}
-      />
+      {isLoading ?
+        null :
+        <img
+          style={{maxHeight: 500, maxWidth: '100%'}}
+          src={image}
+          alt={alt}
+        />
+      }
     </div>
   )
 }

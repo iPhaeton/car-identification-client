@@ -22,6 +22,7 @@ class App extends Component {
       classes: [],
     },
     thumbnails: [],
+    isLoading: true,
   }
 
   update = (newState) => {
@@ -52,7 +53,7 @@ class App extends Component {
     this.previewGenerator = requestGenerator({
       request: getPreview,
       timeout: 5000,
-      onResponse: preview => this.update({preview}),
+      onResponse: preview => this.update({preview, isLoading: false}),
     });
     this.previewGenerator.start();
 
@@ -67,7 +68,7 @@ class App extends Component {
   }
 
   render() {
-    const {mode, preview, thumbnails} = this.state;
+    const {mode, preview, thumbnails, isLoading} = this.state;
 
     return (
       <div className="App">
@@ -76,6 +77,7 @@ class App extends Component {
             <Preview
               image={getImageString(preview.image_base64)}
               alt={preview.classes[0]}
+              isLoading={isLoading}
             />
             <Thumbnails thumbnails={thumbnails} onThumbClick={this.handleThumbnailClick}/>
           </div>
