@@ -39,6 +39,5 @@ export async function recognize(file) {
   const body = new FormData();
   body.append('image', file);
   const res = await postRequest(process.env.REACT_APP_API, body);
-  console.log(res)
   return res;
 }
