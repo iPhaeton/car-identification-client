@@ -1,0 +1,12 @@
+.Thumbnails {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+.Thumbnails::-webkit-scrollbar {
+    display: none;
+}

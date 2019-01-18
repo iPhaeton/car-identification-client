@@ -1,7 +1,7 @@
 .Thumbnail {
     border: none;
     padding: 0;
-    backgroundColor: transparent;
+    background-color: transparent;
 }
 
 .Thumbnail:hover {
