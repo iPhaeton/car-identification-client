@@ -56,6 +56,10 @@ class App extends Component {
     this.update({isLoading: false})
   };
 
+  toggleAboutModal = () => {
+    this.update({modal: {open: !this.state.modal.open}});
+  }
+
   componentDidMount = async () => {
     this.previewGenerator = requestGenerator({
       request: getPreview,
@@ -90,10 +94,15 @@ class App extends Component {
           </div>
           <div className="App-info">
             <Info classes={preview.classes} probs={preview.probs}/>
-            <ControlPanel mode={mode} onRecognitionRequest={this.handleRecognitionRequest} onBackToSlideShowClick={this.handleBackToSlideShowClick} />
+            <ControlPanel
+              mode={mode}
+              onAboutClick={this.toggleAboutModal}
+              onRecognitionRequest={this.handleRecognitionRequest}
+              onBackToSlideShowClick={this.handleBackToSlideShowClick}
+            />
           </div>
         </div>
-        <About/>
+        <About open={this.state.modal.open} onClose={this.toggleAboutModal}/>
       </div>
     );
   }

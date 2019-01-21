@@ -1,12 +1,13 @@
 import * as React from 'react';
 import '../../css/Modal.css';
 import {map} from '../../utils/common';
+import '../../css/Button.css'
 
 export const Modal = props => {
-  const {children} = props;
+  const {open, children} = props;
 
   return (
-    <div className="Modal">
+    <div className={`Modal ${open ? '' : 'Modal-Hidden'}`}>
       {children}
     </div>
   )
@@ -20,6 +21,7 @@ export const StandardButtons = props => {
       <div>
         {map((title, handler, index) => (
           <button
+            className="Button"
             onClick={() => handler(title, index)}
             key={index}
           >

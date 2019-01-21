@@ -1,15 +1,18 @@
 import * as React from 'react';
 import modal from '../enhancers/modal/enhancer';
 import {StandardButtons} from '../enhancers/modal/components';
-import '../css/Modal.css'
+import '../css/Modal.css';
+import '../css/Button.css';
 
-const About = () => {
+const About = props => {
+  const {onClose} = props;
+
   return (
     <div style={{backgroundColor: '#fff', width: 700}}>
       <div style={{padding: '30px 30px 0 30px'}}>
         <p style={{textAlign: 'justify'}}>
           In this demo we recognize a car make and model by a photo of the car. We trained a neural network on
-          <button style={{border: 'none', backgroundColor: 'transparent', fontSize: 16, color: '#66aaaa'}}>
+          <button className="Button" style={{color: '#66aadd'}}>
             48 classes
           </button>
           .
@@ -20,7 +23,7 @@ const About = () => {
       <StandardButtons
         className="StandardButtons"
         titles={['OK']}
-        handlers={[() => console.log('click')]}
+        handlers={[onClose]}
       />
     </div>
   )

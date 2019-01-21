@@ -2,7 +2,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.MainButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
+    flex-direction: column;
     height: 120px;
 }
 
@@ -10,16 +17,12 @@
     width: 200px;
     height: 50px;
     border: none;
-    border: none;
-    font-size: 15px;
 }
 
-.ControlButton:hover {
-    cursor: pointer;
-}
-
-.ControlButton:focus {
-    outline: 0;
+.AboutButton {
+    background-color: transparent;
+    color: #999;
+    margin: 22px;
 }
 
 .FileInput {

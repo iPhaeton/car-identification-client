@@ -8,7 +8,7 @@ const Info = props => {
   return (
     <div style={{
       width: '100%',
-      height: 500,
+      height: 450,
 
     }}>
       {map((c, p, i) => <ClassInfo name={c} prob={p} key={i}/>, classes, probs)}
