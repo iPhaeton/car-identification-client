@@ -9,6 +9,7 @@ import Thumbnails from "./components/Thumbnails";
 import ControlPanel from './components/ControlPanel';
 import {recognizer} from "./recognizer/index";
 import {getImageString} from "./utils/common";
+import About from './components/About';
 
 class App extends Component {
   previewGenerator = null;
@@ -23,6 +24,9 @@ class App extends Component {
     },
     thumbnails: [],
     isLoading: true,
+    modal: {
+      open: false,
+    },
   }
 
   update = (newState) => {
@@ -89,6 +93,7 @@ class App extends Component {
             <ControlPanel mode={mode} onRecognitionRequest={this.handleRecognitionRequest} onBackToSlideShowClick={this.handleBackToSlideShowClick} />
           </div>
         </div>
+        <About/>
       </div>
     );
   }
