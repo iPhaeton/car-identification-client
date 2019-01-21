@@ -4,8 +4,6 @@ import '../css/Button.css';
 import {PREDICTION_MODE} from "../constants";
 
 class ControlPanel extends React.Component {
-  input = null;
-
   render() {
     const {mode, onAboutClick, onRecognitionRequest, onBackToSlideShowClick} = this.props;
 
