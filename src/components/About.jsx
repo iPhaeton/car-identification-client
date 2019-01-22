@@ -21,7 +21,7 @@ class About extends React.Component {
     const {onClose} = this.props;
 
     return (
-      <div style={{backgroundColor: '#fff', width: 700}}>
+      <div className="About">
         <div style={{padding: '30px 30px 0 30px'}}>
           <p style={{textAlign: 'justify'}}>
             In this demo we recognize a car make and model by a photo of the car. We trained a neural network on

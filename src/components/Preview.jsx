@@ -1,17 +1,12 @@
 import * as React from 'react';
 import {ClipLoader} from 'react-spinners';
+import '../css/Preview.css';
 
 const Preview = props => {
   const {image, alt, isLoading} = props;
 
   return (
-    <div style={{
-      width: '100%',
-      height: 500,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}>
+    <div className="Preview">
       {isLoading ?
         <ClipLoader
           color="#00ffff"

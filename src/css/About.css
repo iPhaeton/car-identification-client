@@ -1,3 +1,8 @@
+.About {
+    background-color: #fff;
+    width: 700px;
+}
+
 .KnownClasses {
     height: 400px;
     overflow-y: scroll;
@@ -15,4 +20,10 @@
 
 .Hidden {
     height: 0;
+}
+
+@media (max-width: 500px) {
+    .About {
+        width: 100%;
+    }
 }
